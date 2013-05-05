@@ -203,5 +203,46 @@ textarea::-webkit-input-placeholder {
   width: 44px;
   height: 44px;
   border: 1px solid rgb(71,163,119);
-  background-size: cover;
+ }
+
+.icon-play {
+  font-size: 1.8em;
+  margin-top: 14px;
+  color: rgb(71,163,119);
+}
+
+/*TODO: Hover is messed up on both elements*/
+.searchbar .play:hover,
+.searchbar .icon-play:hover {
+  cursor: pointer;
+  background-color: rgb(71,163,119);
+  color: white;
+}
+
+.semi-circle{
+  height: 45px;
+  width: 90px;
+  -moz-border-radius:90px 90px 0 0;
+  -webkit-border-radius:90px 90px 0 0;
+  border-radius:90px 90px 0 0;
+  position: absolute;
+  top: -47px;
+  left: 50%;
+  margin-left: -23px;
+  opacity: .75;
+  background-color: #FFF;
+  border: 1px solid rgb(71,163,119);
+}
+
+.searchbar .icon-twitter {
+  font-size: 1.8em;
+  margin-top: 20%;
+  left: 50%;
+  margin-left: -11px;
+  color: rgb(71,163,119);
+}
+
+.searchbar .icon-twitter:hover {
+  cursor: pointer;
+  color: rgb(58,172,237);
 }
