@@ -207,20 +207,20 @@ textarea::-webkit-input-placeholder {
   border-radius: 50%;
   width: 44px;
   height: 44px;
-  border: 1px solid rgb(71,163,119);
+  border: 1px solid #1ABC9C;
  }
 
 .icon-play {
   font-size: 1.8em;
   margin-top: 14px;
-  color: rgb(71,163,119);
+  color: #1ABC9C;
 }
 
 /*TODO: Hover is messed up on both elements*/
 .searchbar .play:hover,
 .searchbar .icon-play:hover {
   cursor: pointer;
-  background-color: rgb(71,163,119);
+  background-color: #1ABC9C;
   color: white;
 }
 
@@ -244,10 +244,57 @@ textarea::-webkit-input-placeholder {
   margin-top: 20%;
   left: 50%;
   margin-left: -11px;
-  color: rgb(71,163,119);
+  color: #1ABC9C;
 }
 
 .searchbar .icon-twitter:hover {
   cursor: pointer;
   color: rgb(58,172,237);
+}
+
+.share-bubble {
+  position: relative;
+  left: -76px;
+  bottom: 115px;
+  width: 240px;
+  height: 60px;
+  padding: 0px;
+  background: #FFFFFF;
+  border: #7F7F7F solid 1px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(71,163,119);
+  background-color: white;
+}
+
+.share-bubble:after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 105px;
+  border-style: solid;
+  border-width: 15px 15px 0;
+  border-color: #FFFFFF transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+}
+
+.share-bubble:before {
+  content: "";
+  position: absolute;
+  top: 61px;
+  left: 105px;
+  border-style: solid;
+  border-width: 15px 15px 0;
+  border-color: rgb(71,163,119) transparent;
+  display: block;
+  width: 0;
+  z-index: 0;
+}
+
+.share-bubble .btn.btn-primary{
+  margin-top: 15px;
+  margin-left: 118px;
 }
