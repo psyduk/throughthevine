@@ -253,6 +253,7 @@ textarea::-webkit-input-placeholder {
 }
 
 .share-bubble {
+  display: none;
   position: relative;
   left: -76px;
   bottom: 115px;
@@ -295,6 +296,12 @@ textarea::-webkit-input-placeholder {
 }
 
 .share-bubble .btn.btn-primary{
-  margin-top: 15px;
-  margin-left: 118px;
+  margin-top: 17px;
+}
+
+.twitter-share-container {
+  display: inline-block;
+  float: left;
+  margin-top: 19px;
+  margin-left: 10px;
 }
