@@ -1,6 +1,12 @@
-var request = require('request'),
-    qs      = require('querystring'),
-    $ = require('cheerio');
+var request  = require('request'),
+    mongoose = require('mongoose'),
+    Share    = mongoose.model('Share'),
+    qs       = require('querystring'),
+    $        = require('cheerio');
+
+exports.share = function (req, res ) {
+
+};
 
 exports.get = function(req, res) {
   var query  = req.query.keywords,
@@ -10,6 +16,12 @@ exports.get = function(req, res) {
   request("http://search.twitter.com/search.json?" + search, function (e, r, body) {
     if (e) { throw e }
     var tweets = JSON.parse(body).results;
+
+    if ( Object.keys(tweets).length < 5) {
+      // TODO: RENDER ERROR MESSAGE
+      console.log('not enough results');
+    }
+
     var vineVids = [];
     tweets.forEach(function (val) {
       //find the video url
@@ -29,10 +41,15 @@ exports.get = function(req, res) {
           vineVids.push(vid);
 
           if (vineVids.length === 3 ) {
-            res.render('vine/show', { vids: vineVids });
+            // Save into database for reference later
+            var share = new Share({query: query, vid: vineVids});
+            share.save(function (err, share) {
+              if (err) { return next(err); }
+              res.render('vine/show', { query: query, vids: vineVids, id: share.id });
+            });
           }
         });
       }
     });
   });
-}
+};
