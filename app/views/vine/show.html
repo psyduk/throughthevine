@@ -2,38 +2,41 @@
 {% block content %}
 <div class="row-fluid video-wrapper">
   <div class="span4 video">
-    <video class="vid" id="video_0" width="100%" height="100%" preload="auto" muted="muted" poster={{ vids[0].poster }}>
-      <source src={{ vids[0].video }} type="video/mp4">
+    <video class="vid" id="video_0" width="100%" height="100%" preload="auto" muted="muted" poster="{{ vids[0].poster }}">
+      <source src="{{ vids[0].video }}" type="video/mp4">
     </video>
     <div class="av">
-      <a href={{ vids[0].url }}><img class="avatar" src={{ vids[0].avatar }}></a>
-      {{ vids[0].username }} - {{ vids[0].tagline }}
+      <a href={{ vids[0].url }}><img class="avatar" src="{{ vids[0].avatar }}"></a>
+      <span class="text"><strong>{{ vids[0].username }}</strong> - {{ vids[0].tagline }}</span>
     </div>
   </div>
   <div class="span4 video">
-    <video class="vid" id="video_1" width="100%" height="100%" preload="auto" muted="muted" poster={{ vids[1].poster }}>
-      <source src={{ vids[1].video }} type="video/mp4">
+    <video class="vid" id="video_1" width="100%" height="100%" preload="auto" muted="muted" poster="{{ vids[1].poster }}">
+      <source src="{{ vids[1].video }}" type="video/mp4">
     </video>
     <div class="av">
-      <a href={{ vids[1].url }}><img class="avatar" src={{ vids[1].avatar }}></a>
-      {{ vids[1].username }} - {{ vids[1].tagline }}
+      <a href="{{ vids[1].url }}"><img class="avatar" src="{{ vids[1].avatar }}"></a>
+      <span class="text"><strong>{{ vids[1].username }}</strong> - {{ vids[1].tagline }}</span>
     </div>
   </div>
   <div class="span4 video">
     <video class="vid" id="video_2" width="100%" height="100%" preload="auto" muted="muted" poster={{ vids[2].poster }}>
-      <source src={{ vids[2].video }} type="video/mp4">
+      <source src="{{ vids[2].video }}" type="video/mp4">
     </video>
     <div class="av">
-      <a href={{ vids[2].url }}><img class="avatar" src={{ vids[2].avatar }}></a>
-      {{ vids[2].username }} - {{ vids[2].tagline }}
+      <a href="{{ vids[2].url }}"><img class="avatar" src="{{ vids[2].avatar }}"></a>
+      <span class="text"><strong>{{ vids[2].username }}</strong> - {{ vids[2].tagline }}</span>
     </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="searchbar span12 playVideos">
-    <div class="vine-v"><i class="icon-search"></i></div>
-  </div>
+<div class="searchbar">
+  <form class="form" action="/vine" method="GET">
+    <input type="text" name="keywords" placeholder="Enter a hashtag to search through the vine">
+    <button type="submit" class="submit" style="display: none;"></button>
+  </form>
+  <div class="vine-v"></div>
+  <div class="play playVideos"></div>
 </div>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script>
@@ -50,11 +53,11 @@ var playVideo = function (el) {
 $('.playVideos').on('click', function (e) {
   console.log('playing videos');
   playVideo($('#video_0' ).get(0));
-  $('#video_0').bind('ended', function (e) {
+  $('#video_0').one('ended', function (e) {
     playVideo($('#video_1' ).get(0));
-    $('#video_1').bind('ended', function (e) {
+    $('#video_1').one('ended', function (e) {
       playVideo($('#video_2' ).get(0));
-      $('#video_2').bind('ended', function (e) {
+      $('#video_2').one('ended', function (e) {
         console.log('ended');
       });
     });
