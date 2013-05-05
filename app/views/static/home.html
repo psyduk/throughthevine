@@ -3,7 +3,13 @@
   <div class="search-box">
     <div class="vine-v"></div>
     <form class="form" action="/vine" method="GET">
+      {% if error %}
+      <div class="control-group error">
+        <input class="error" type="text" name="keywords" placeholder="{{ error }}">
+      </div>
+      {% else %}
       <input type="text" name="keywords" placeholder="Enter a hashtag to search through the vine">
+      {% endif %}
       <button type="submit" class="submit" style="display: none;"></button>
     </form>
     <div class="footer">Made with <i class="icon-heart"></i> at AngelHack</div>

@@ -22,8 +22,7 @@ exports.get = function(req, res) {
     var tweets = JSON.parse(body).results;
 
     if ( Object.keys(tweets).length < 5) {
-      // TODO: RENDER ERROR MESSAGE
-      console.log('not enough results');
+      res.render('static/home', { error: 'Not Enough Results' } );
     }
 
     var vineVids = [];
