@@ -305,3 +305,69 @@ textarea::-webkit-input-placeholder {
   margin-top: 19px;
   margin-left: 10px;
 }
+
+.banner{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 149px;
+  width: 149px;
+  overflow:hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.banner a{
+  display: block;
+  width: 190px;
+  font-size: 13px;
+  font-family: "Helvetica", Arial, sans-serif;
+  background-color: #333;
+  color: #FFF;
+  word-spacing: 2px;
+  text-decoration: none;
+  padding: 5px 15px 5px 25px;
+
+  position:relative;
+  left: 20px;
+  top: -37px;
+  text-align: center;
+
+  -moz-transform-origin: 0 0 ;
+  -moz-transform:rotate(45deg);
+  -moz-box-shadow:    1px 1px 5px 1px #666;
+
+  -o-transform-origin: 0 0 ;
+  -o-transform:rotate(45deg);
+  -o-box-shadow:    1px 1px 5px 1px #666;
+
+  -webkit-transform-origin: 0 0 ;
+  -webkit-transform:rotate(45deg);
+  -webkit-box-shadow: 1px 1px 5px 1px #666;
+
+  -ms-transform-origin: 0 0 ;
+  -ms-transform:rotate(45deg);
+  -ms-box-shadow: 1px 1px 5px 1px #666;
+
+  transform-origin: 0 0 ;
+  transform:rotate(45deg);
+  box-shadow: 1px 1px 5px 1px #666;
+
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.03, #ed5b65),
+    color-stop(0.05, #ed5b65),
+    color-stop(0.07, #ed5b65),
+    color-stop(0.93, #ed5b65),
+    color-stop(0.95, #ed5b65),
+    color-stop(0.97, #ed5b65)
+  );
+
+  background-image: -webkit-linear-gradient(bottom, #ed5b65 3%, #ed5b65 5%, #ed5b65 7%, #ed5b65 93%, #ed5b65 95%, #ed5b65 97%);
+  background-image: -ms-linear-gradient(bottom, #ed5b65 3%, #ed5b65 5%, #ed5b65 7%, #ed5b65 93%, #ed5b65 95%, #ed5b65 97%);
+  background-image: -moz-linear-gradient(bottom, #ed5b65 3%, #ed5b65 5%, #ed5b65 7%, #ed5b65 93%, #ed5b65 95%, #ed5b65 97%);
+  background-image: -o-linear-gradient(bottom, #ed5b65 3%, #ed5b65 5%, #ed5b65 7%, #ed5b65 93%, #ed5b65 95%, #ed5b65 97%);
+  background-image: linear-gradient(bottom, #ed5b65 3%, #ed5b65 5%, #ed5b65 7%, #ed5b65 93%, #ed5b65 95%, #ed5b65 97%);
+}
