@@ -4,8 +4,12 @@ var request  = require('request'),
     qs       = require('querystring'),
     $        = require('cheerio');
 
-exports.share = function (req, res ) {
-
+exports.share = function (req, res) {
+  var id = req.params.id;
+  Share.findById(id, function (err, share) {
+    if (err) { return next(err); }
+    res.render('vine/show', { query: share.query, vids: share.vid, id: share.id });
+  });
 };
 
 exports.get = function(req, res) {
