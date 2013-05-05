@@ -8,5 +8,5 @@ module.exports = function (app) {
 
   // Include Vine Controller
   var vine = require('../app/controllers/vine');
-  app.post('/vine', vine.post);
+  app.get('/vine', vine.get);
 }
