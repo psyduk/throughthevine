@@ -160,7 +160,7 @@ textarea::-webkit-input-placeholder {
 }
 
 .video-wrapper {
-  margin-top: 50px;
+  margin-top: 25px;
   background-image: -webkit-gradient(linear, 0 0, 100% 100%, from(#EFF9F7), to(#D0F2E9));
   background-image: -moz-linear-gradient(bottom top, #EFF9F7 0%, #D0F2E9 100%);
   background-image: -o-linear-gradient(bottom top, #EFF9F7 0%, #D0F2E9 100%);
