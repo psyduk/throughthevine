@@ -3,13 +3,17 @@ var express    = require('express'),
     fs         = require('fs');
 
 // Bootstrap models
-// var models_path = __dirname + '/app/models';
-// fs.readdirSync(models_path).forEach(function (file) {
-//   require(models_path + '/' + file);
-// });
+var models_path = __dirname + '/app/models';
+fs.readdirSync(models_path).forEach(function (file) {
+  require(models_path + '/' + file);
+});
 
 // Initialize Express application
-var app = express();
+var app = express(),
+    mongoose = require('mongoose');
+
+// Bootstrap db connection
+mongoose.connect(process.env.MONGODB);
 
 // express settings
 require('./config/express')(app);

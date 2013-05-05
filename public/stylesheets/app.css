@@ -8,6 +8,7 @@ html {
   overflow: hidden; /*Take out if we do infinite scrolling*/
 }
 
+
 .row-fluid {
   padding-left: 25px;
   padding-right: 25px;
@@ -55,6 +56,10 @@ html {
   display: block;
   width: 0;
   z-index: 0;
+}
+
+.search-box.error {
+  border-color: #c0392b;
 }
 
 .vine-v {
