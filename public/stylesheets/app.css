@@ -8,6 +8,11 @@ html {
   overflow: hidden; /*Take out if we do infinite scrolling*/
 }
 
+a {
+  text-decoration: none;
+  color: #34495e;
+}
+
 .row-fluid {
   padding-left: 25px;
   padding-right: 25px;

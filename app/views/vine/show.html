@@ -7,7 +7,7 @@
     </video>
     <div class="av">
       <a href={{ vids[0].url }}><img class="avatar" src="{{ vids[0].avatar }}"></a>
-      <span class="text"><strong>{{ vids[0].username }}</strong> - {{ vids[0].tagline }}</span>
+      <span class="text"><strong><a href="{{ vids[0].url }}">{{ vids[0].username }}</strong> - {{ vids[0].tagline }}</a></span>
     </div>
   </div>
   <div class="span4 video">
@@ -16,7 +16,7 @@
     </video>
     <div class="av">
       <a href="{{ vids[1].url }}"><img class="avatar" src="{{ vids[1].avatar }}"></a>
-      <span class="text"><strong>{{ vids[1].username }}</strong> - {{ vids[1].tagline }}</span>
+      <span class="text"><strong><a href="{{ vids[1].url }}">{{ vids[1].username }}</strong> - {{ vids[1].tagline }}</a></span>
     </div>
   </div>
   <div class="span4 video">
@@ -24,8 +24,8 @@
       <source src="{{ vids[2].video }}" type="video/mp4">
     </video>
     <div class="av">
-      <a href="{{ vids[2].url }}"><img class="avatar" src="{{ vids[2].avatar }}">
-      <span class="text"><strong>{{ vids[2].username }}</strong> - {{ vids[2].tagline }}</span></a>
+      <a href="{{ vids[2].url }}"><img class="avatar" src="{{ vids[2].avatar }}"></a>
+      <span class="text"><strong><a href="{{ vids[2].url }}">{{ vids[2].username }}</strong> - {{ vids[2].tagline }}</a></span>
     </div>
   </div>
 </div>
