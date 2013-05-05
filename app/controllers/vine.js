@@ -2,12 +2,10 @@ var request = require('request'),
     qs      = require('querystring'),
     $ = require('cheerio');
 
-exports.post = function(req, res) {
-  var query  = req.body.keywords,
+exports.get = function(req, res) {
+  var query  = req.query.keywords,
       search = 'vine ' + query;
       search = qs.stringify({q: search});
-
-      console.log(query)
 
   request("http://search.twitter.com/search.json?" + search, function (e, r, body) {
     if (e) { throw e }
@@ -15,7 +13,7 @@ exports.post = function(req, res) {
     var vineVids = [];
     tweets.forEach(function (val) {
       //find the video url
-      var videoURL = val.text.match(/https:\/\/t.co\/\S*/);
+      var videoURL = val.text.match(/https?:\/\/t\.co\/\w+/);
       if(videoURL) {
         var vid = {};
         vid.url = videoURL[0].replace('”', '').replace('"', '');

@@ -8,6 +8,12 @@ html {
   overflow: hidden; /*Take out if we do infinite scrolling*/
 }
 
+.row-fluid {
+  padding-left: 25px;
+  padding-right: 25px;
+  box-sizing: border-box;
+}
+
 .search-box {
   position: fixed;
   top: 50%;
@@ -52,7 +58,6 @@ html {
 }
 
 .vine-v {
-  content: "";
   position: relative;
   top: -96px;
   left: 42.5%;
@@ -98,25 +103,23 @@ textarea::-webkit-input-placeholder {
 
 .searchbar {
   position: fixed;
+  left: 0;
+  right: 0;
   bottom: 0;
-  width: 100%;
-  height: 60px;
+  height: 44px;
+  padding: 10px;
   background-color: white;
   opacity: .75;
   border: 1px solid rgb(71,163,119);
-}
-
-.searchbar img {
-  margin-left: -23px;
+  text-align: center;
 }
 
 .searchbar .vine-v {
-  content: "";
-  position: relative;
+  position: absolute;
+  left: auto;
+  top: 10px;
+  right: 10px;
   border-radius: 50%;
-  margin-left: -23px;
-  top: 6px;
-  left: 50%;
   width: 44px;
   height: 44px;
   border: 1px solid rgb(71,163,119);
@@ -124,31 +127,26 @@ textarea::-webkit-input-placeholder {
   background-size: cover;
 }
 
-.vine-v:hover {
-  background-color: black;
+.av {
+  margin-top: 10px;
+}
+
+.av .text {
+  vertical-align: top;
 }
 
 .avatar {
+  float: left;
+  margin: 0 10px 10px 0;
   cursor: pointer;
-  position: relative;
   width: 60px;
   height: 60px;
   overflow: hidden;
-  bottom: 80px;
-  left: 15px;
   border: 1px solid rgb(71,163,119);
   border-radius: 5px;
 }
 
 .message {
-  position: relative;
-  border: 1px solid rgb(71,163,119);
-  border-radius: 5px;
-  width: 278px;
-  height: 60px;
-  bottom: 142px;
-  left: 84px;
-  overflow: hidden;
 }
 
 .icon-search {
@@ -189,4 +187,21 @@ textarea::-webkit-input-placeholder {
 .avatar {
   width: 60px;
   height: 60px;
+}
+
+.searchbar input[type="text"] {
+  position: static;
+  height: 24px;
+}
+
+.searchbar .play {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  right: auto;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgb(71,163,119);
+  background-size: cover;
 }
