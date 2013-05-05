@@ -13,7 +13,7 @@ var app = express(),
     mongoose = require('mongoose');
 
 // Bootstrap db connection
-mongoose.connect('mongodb://musicbox:musicbox@dharma.mongohq.com:10019/Musicbox');
+mongoose.connect(process.env.MONGODB);
 
 // express settings
 require('./config/express')(app);
