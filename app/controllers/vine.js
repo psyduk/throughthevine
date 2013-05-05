@@ -47,7 +47,7 @@ exports.get = function(req, res) {
             // Save into database for reference later
             var share = new Share({query: query, vid: vineVids});
             share.save(function (err, share) {
-              if (err) { return next(err); }
+              if (err) { return console.log(err); }
               res.render('vine/show', { query: query, vids: vineVids, id: share.id });
             });
           }
