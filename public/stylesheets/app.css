@@ -8,7 +8,6 @@ html {
   overflow: hidden; /*Take out if we do infinite scrolling*/
 }
 
-
 .row-fluid {
   padding-left: 25px;
   padding-right: 25px;
@@ -304,6 +303,12 @@ textarea::-webkit-input-placeholder {
   float: left;
   margin-top: 19px;
   margin-left: 10px;
+}
+
+.twitter-share-button {
+  float: left;
+  margin-left: 5px;
+  margin-top: 5px;
 }
 
 .banner{
