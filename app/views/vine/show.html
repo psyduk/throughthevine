@@ -32,7 +32,7 @@
 
 <div class="searchbar">
   <form class="form" action="/vine" method="GET">
-    <input type="text" name="keywords" placeholder="{{ query }}">
+    <input type="text" name="keywords" placeholder="{{ query }}" onfocus="this.placeholder = ''">
     <button type="submit" class="submit" style="display: none;"></button>
   </form>
   <a class="vine-v" href="/"></a>
