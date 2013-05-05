@@ -1,0 +1,192 @@
+html {
+  /*background-image: -webkit-linear-gradient(bottom top, #EFF9F7 0%, #D0F2E9 100%);*/
+  background-image: -webkit-gradient(linear, 0 0, 100% 100%, from(#EFF9F7), to(#D0F2E9));
+  background-image: -moz-linear-gradient(bottom top, #EFF9F7 0%, #D0F2E9 100%);
+  background-image: -o-linear-gradient(bottom top, #EFF9F7 0%, #D0F2E9 100%);
+  background-image: linear-gradient(bottom top, #EFF9F7 0%, #D0F2E9 100%);
+  font-family: "Courier New", Courier, monospace;
+  overflow: hidden; /*Take out if we do infinite scrolling*/
+}
+
+.search-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 100px;
+  margin-top: -50px;
+  margin-left: -250px;
+  padding: 0px;
+  background: #FFFFFF;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(71,163,119);
+  opacity: .75;
+}
+
+.search-box:after {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 235px;
+  border-style: solid;
+  border-width: 0 15px 15px;
+  border-color: #FFFFFF transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+}
+
+.search-box:before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 235px;
+  border-style: solid;
+  border-width: 0 15px 15px;
+  border-color: rgb(71,163,119) transparent;
+  display: block;
+  width: 0;
+  z-index: 0;
+}
+
+.vine-v {
+  content: "";
+  position: relative;
+  top: -96px;
+  left: 42.5%;
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  background-color: #fff;
+  border: 1px solid rgb(71,163,119);
+  background-image: url("/vinev.png");
+  background-size: cover;
+}
+
+input[type="text"] {
+  position: relative;
+  top: -58px;
+  margin: 0 15px;
+  height: 43px;
+  width: 455px;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: rgb(71,163,119) !important;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px
+}
+
+.footer {
+  position: relative;
+  float: left;
+  padding: 3em;
+  top: -50px;
+  left: 130px;
+  opacity: 1;
+}
+
+.footer .icon-heart {
+  position: relative;
+  top: 0.15em;
+  color: #ed5b65;
+  font-size: 1em;
+}
+
+.searchbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  opacity: .75;
+  border: 1px solid rgb(71,163,119);
+}
+
+.searchbar img {
+  margin-left: -23px;
+}
+
+.searchbar .vine-v {
+  content: "";
+  position: relative;
+  border-radius: 50%;
+  margin-left: -23px;
+  top: 6px;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgb(71,163,119);
+  background-image: url("/vinev.png");
+  background-size: cover;
+}
+
+.vine-v:hover {
+  background-color: black;
+}
+
+.avatar {
+  cursor: pointer;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  bottom: 80px;
+  left: 15px;
+  border: 1px solid rgb(71,163,119);
+  border-radius: 5px;
+}
+
+.message {
+  position: relative;
+  border: 1px solid rgb(71,163,119);
+  border-radius: 5px;
+  width: 278px;
+  height: 60px;
+  bottom: 142px;
+  left: 84px;
+  overflow: hidden;
+}
+
+.icon-search {
+  position: relative;
+  top: 22%;
+  left: 25%;
+  color: rgb(90,205,169);
+  font-size: 1.8em;
+}
+
+.video-wrapper {
+  margin-top: 50px;
+  background-image: -webkit-gradient(linear, 0 0, 100% 100%, from(#EFF9F7), to(#D0F2E9));
+  background-image: -moz-linear-gradient(bottom top, #EFF9F7 0%, #D0F2E9 100%);
+  background-image: -o-linear-gradient(bottom top, #EFF9F7 0%, #D0F2E9 100%);
+  background-image: linear-gradient(bottom top, #EFF9F7 0%, #D0F2E9 100%);
+}
+
+.video {
+  background-color: white;
+  padding: 25px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.vid {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+}

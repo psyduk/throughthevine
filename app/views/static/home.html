@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block content %}
+  <div class="search-box">
+    <div class="vine-v"></div>
+    <form class="form" action="/vine" method="POST">
+      <input type="text" name="keywords" placeholder="Enter a hashtag to search through the vine">
+      <button type="submit" class="submit" style="display: none;"></button>
+    </form>
+    <div class="footer">Made with <i class="icon-heart"></i> at AngelHack</div>
+  </div>
+{% endblock %}
