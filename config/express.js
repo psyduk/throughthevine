@@ -1,8 +1,7 @@
-var cons             = require('consolidate'),
-    express          = require('express'),
-    swig             = require('swig'),
-    url              = require('url'),
-    viewHelpers      = require('./middlewares/view');
+var cons    = require('consolidate'),
+    express = require('express'),
+    swig    = require('swig'),
+    url     = require('url');
 
 var __root = function() {
   return require('path').normalize(__dirname + '/..');
@@ -20,9 +19,6 @@ module.exports = function (app) {
   app.set('view engine', 'html');
 
   app.configure(function () {
-
-    // dynamic helpers
-    // app.use(viewHelpers(config));
 
     // bodyParser should be above methodOverride
     app.use(express.bodyParser());

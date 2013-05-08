@@ -6,6 +6,7 @@ var request  = require('request'),
 
 exports.share = function (req, res) {
   var id = req.params.id;
+
   Share.findById(id, function (err, share) {
     if (err) { return next(err); }
     res.render('vine/show', { query: share.query, vids: share.vid, id: share.id });
@@ -15,13 +16,13 @@ exports.share = function (req, res) {
 exports.get = function(req, res) {
   var query  = req.query.keywords,
       search = 'vine ' + query;
-      search = qs.stringify({q: search});
+      search = qs.stringify({ q: search });
 
   request("http://search.twitter.com/search.json?" + search, function (e, r, body) {
     if (e) { throw e }
     var tweets = JSON.parse(body).results;
 
-    if ( Object.keys(tweets).length < 5) {
+    if (Object.keys(tweets).length < 5) {
       res.render('static/home', { error: 'Not Enough Results' } );
     }
 
@@ -29,7 +30,7 @@ exports.get = function(req, res) {
     tweets.forEach(function (val) {
       //find the video url
       var videoURL = val.text.match(/https?:\/\/t\.co\/\w+/);
-      if(videoURL) {
+      if (videoURL) {
         var vid = {};
         vid.url = videoURL[0].replace('”', '').replace('"', '');
         request(vid.url, function (e, r, body) {
@@ -43,16 +44,17 @@ exports.get = function(req, res) {
           vid.tagline  = $user('p').html();
           vineVids.push(vid);
 
-          if (vineVids.length === 3 ) {
-            // Save into database for reference later
+          if (vineVids.length === 3) {
             var share = new Share({query: query, vid: vineVids});
             share.save(function (err, share) {
               if (err) { return console.log(err); }
               res.render('vine/show', { query: query, vids: vineVids, id: share.id });
             });
           }
+
         });
       }
+
     });
   });
 };
