@@ -16,7 +16,7 @@ exports.share = function (req, res) {
 exports.get = function(req, res) {
   var query  = req.query.keywords,
       location = req.connection.remoteAddress,
-      search = 'vine ' + query;
+      search = 'vine.co ' + query;
       search = qs.stringify({ q: search });
 
   request('http://search.twitter.com/search.json?' + search, function (e, r, body) {
