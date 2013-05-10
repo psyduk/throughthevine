@@ -49,7 +49,7 @@ exports.get = function(req, res) {
             userNames[vid.username] = true;
           }
 
-          if (vineVids.length === 3) {
+          if (vineVids.length === 8) {
             var share = new Share({query: query, vid: vineVids});
             share.save(function (err, share) {
               if (err) { return console.log(err); }
