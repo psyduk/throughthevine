@@ -16,7 +16,7 @@ exports.share = function (req, res) {
 exports.get = function(req, res) {
   var query  = req.query.keywords,
       location = req.connection.remoteAddress,
-      search = 'vine ' + query;
+      search = 'vine.co ' + query;
       search = qs.stringify({ q: search });
 
   request('http://search.twitter.com/search.json?' + search, function (e, r, body) {
@@ -45,7 +45,7 @@ exports.get = function(req, res) {
           vid.username = $user('h2').html();
           vid.tagline  = $user('p').html();
           //make sure we haven't already displayed a video from this user
-          if(!userNames[vid.username]) {
+          if (!userNames[vid.username] && vid.avatar) {
             vineVids.push(vid);
             userNames[vid.username] = true;
           }

@@ -1,5 +1,5 @@
 {
-  "version": "0.0.1-12",
+  "version": "0.0.1-18",
   "description": "ThroughTheVine",
   "main": "app.js",
   "scripts": {
@@ -12,11 +12,11 @@
   "engines": {
     "node": "0.8.x"
   },
-  "domains" : [
-  "www.throughthevine.me",
-  "throughthevine.me",
-  "www.throughthevine.co",
-  "throughthevine.co"
+  "domains": [
+    "www.throughthevine.me",
+    "throughthevine.me",
+    "www.throughthevine.co",
+    "throughthevine.co"
   ],
   "author": "Andrew Ha",
   "license": "MIT",
