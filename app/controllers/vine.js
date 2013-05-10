@@ -15,11 +15,12 @@ exports.share = function (req, res) {
 
 exports.get = function(req, res) {
   var query  = req.query.keywords,
+      location = req.connection.remoteAddress,
       search = 'vine ' + query;
       search = qs.stringify({ q: search });
 
-  request("http://search.twitter.com/search.json?" + search, function (e, r, body) {
-    if (e) { throw e }
+  request('http://search.twitter.com/search.json?' + search, function (e, r, body) {
+    if (e) { throw e; }
     var tweets = JSON.parse(body).results;
 
     if (Object.keys(tweets).length < 5) {
@@ -27,6 +28,7 @@ exports.get = function(req, res) {
     }
 
     var vineVids = [];
+    var userNames = {};
     tweets.forEach(function (val) {
       //find the video url
       var videoURL = val.text.match(/https?:\/\/t\.co\/\w+/);
@@ -42,10 +44,13 @@ exports.get = function(req, res) {
           vid.avatar   = $user('.avatar').attr('src');
           vid.username = $user('h2').html();
           vid.tagline  = $user('p').html();
-          vineVids.push(vid);
-
-          if (vineVids.length === 3) {
-            var share = new Share({query: query, vid: vineVids});
+          //make sure we haven't already displayed a video from this user
+          if(!userNames[vid.username]) {
+            vineVids.push(vid);
+            userNames[vid.username] = true;
+          }
+          if (vineVids.length === 8) {
+            var share = new Share({query: query, vid: vineVids, location: location});
             share.save(function (err, share) {
               if (err) { return console.log(err); }
               res.render('vine/show', { query: query, vids: vineVids, id: share.id });
