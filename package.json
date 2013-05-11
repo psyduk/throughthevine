@@ -29,7 +29,8 @@
     "handlebars": "~1.0.10",
     "request": "~2.16.6",
     "swig": "~0.13.5",
-    "mongoose": "~3.6.9"
+    "mongoose": "~3.6.9",
+    "transliterator": "0.0.2"
   },
   "name": "throughthevine",
   "subdomain": "throughthevine"
