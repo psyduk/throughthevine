@@ -9,7 +9,7 @@ var ShareSchema = new Schema({
     poster   : { type: String, required: true },
     avatar   : { type: String, required: true },
     username : { type: String, required: true },
-    tagline  : { type: String, required: true }
+    tagline  : { type: String, default: '' }
   }],
   location   : { type: String, default: '', trim: true, required: true },
   query      : { type: String, default: '', trim: true, required: true },
