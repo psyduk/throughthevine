@@ -1,5 +1,5 @@
 {
-  "version": "0.0.1-18",
+  "version": "0.0.1-19",
   "description": "ThroughTheVine",
   "main": "app.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "www.throughthevine.co",
     "throughthevine.co"
   ],
-  "author": "Andrew Ha",
+  "author": "Andrew Ha, Selby Walker and Alex Paley",
   "license": "MIT",
   "dependencies": {
     "cron": "~1.0.1",
