@@ -2,7 +2,8 @@ var request  = require('request'),
     mongoose = require('mongoose'),
     Share    = mongoose.model('Share'),
     qs       = require('querystring'),
-    $        = require('cheerio');
+    $        = require('cheerio'),
+    transliterator = require('transliterator');
 
 exports.share = function (req, res) {
   var id = req.params.id;
@@ -28,7 +29,7 @@ exports.get = function(req, res) {
     }
 
     var vineVids = [];
-    var userNames = {};
+    var vidUrls = {};
     tweets.forEach(function (val) {
       //find the video url
       var videoURL = val.text.match(/https?:\/\/t\.co\/\w+/);
@@ -43,13 +44,13 @@ exports.get = function(req, res) {
           vid.poster   = $body('video').attr('poster');
           vid.avatar   = $user('.avatar').attr('src');
           vid.username = $user('h2').html();
-          vid.tagline  = $user('p').html();
+          vid.tagline  = transliterator($user('p').html());
           //make sure we haven't already displayed a video from this user
-          if (!userNames[vid.username] && vid.avatar && vid.video && vid.username) {
+          if (!vidUrls[vid.url] && vid.avatar && vid.video && vid.username) {
             vineVids.push(vid);
-            userNames[vid.username] = true;
+            vidUrls[vid.url] = true;
           }
-          if (vineVids.length === 8) {
+          if (vineVids.length === 3) {
             var share = new Share({query: query, vid: vineVids, location: location});
             share.save(function (err, share) {
               if (err) { return console.log(err); }

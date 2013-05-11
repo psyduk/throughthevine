@@ -4,7 +4,7 @@ html {
   background-image: -moz-linear-gradient(bottom top, #EFF9F7 0%, #D0F2E9 100%);
   background-image: -o-linear-gradient(bottom top, #EFF9F7 0%, #D0F2E9 100%);
   background-image: linear-gradient(bottom top, #EFF9F7 0%, #D0F2E9 100%);
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Helvetica", Helvetica, monospace;
   overflow: hidden; /*Take out if we do infinite scrolling*/
 }
 
