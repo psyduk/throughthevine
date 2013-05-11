@@ -79,8 +79,6 @@ $('.semi-circle').on('click', function (e) {
 
 $('.playVideos').on('click', function (e) {
   $('.playVideos').toggleClass("play-trigger");
-  console.log('fuck me im famous');
-  console.log('playing videos');
   playVideo($('#video_0' ).get(0));
   $('#video_0').one('ended', function (e) {
     playVideo($('#video_1' ).get(0));
