@@ -44,7 +44,9 @@ exports.get = function(req, res) {
           vid.poster   = $body('video').attr('poster');
           vid.avatar   = $user('.avatar').attr('src');
           vid.username = $user('h2').html();
-          vid.tagline  = transliterator($user('p').html());
+          if($user('p').html()) {
+            vid.tagline  = transliterator($user('p').html());
+          }
           //make sure we haven't already displayed a video from this user
           if (!vidUrls[vid.url] && vid.avatar && vid.video && vid.username) {
             vineVids.push(vid);
