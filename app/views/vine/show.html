@@ -38,6 +38,7 @@
   <a class="vine-v" href="/"></a>
   <div class="play playVideos">
     <i class="icon-play"></i>
+    <i class="icon-pause"></i>
   </div>
   <div class="semi-circle">
     <i class="icon-twitter"></i>
@@ -77,7 +78,7 @@ $('.semi-circle').on('click', function (e) {
 });
 
 $('.playVideos').on('click', function (e) {
-  console.log('playing videos');
+  $('.playVideos').toggleClass("play-trigger");
   playVideo($('#video_0' ).get(0));
   $('#video_0').one('ended', function (e) {
     playVideo($('#video_1' ).get(0));

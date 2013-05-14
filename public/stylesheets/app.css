@@ -4,7 +4,8 @@ html {
   background-image: -moz-linear-gradient(bottom top, #EFF9F7 0%, #D0F2E9 100%);
   background-image: -o-linear-gradient(bottom top, #EFF9F7 0%, #D0F2E9 100%);
   background-image: linear-gradient(bottom top, #EFF9F7 0%, #D0F2E9 100%);
-  font-family: "Helvetica", Helvetica, monospace;
+  /*font-family: "Courier New", Courier, monospace;*/
+  font-family: "Helvetica", Arial, sans-serif;
   overflow: hidden; /*Take out if we do infinite scrolling*/
 }
 
@@ -90,8 +91,10 @@ input[type="text"] {
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
   color: rgb(71,163,119) !important;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 16px
+  /*font-family: "Courier New", Courier, monospace;*/
+  font-family: "Helvetica", Arial, sans-serif;
+  text-aline: center;
+  font-size: 14px
 }
 
 .footer {
@@ -99,7 +102,7 @@ textarea::-webkit-input-placeholder {
   float: left;
   padding: 3em;
   top: -50px;
-  left: 130px;
+  left: 25%;
   opacity: 1;
 }
 
@@ -220,9 +223,25 @@ textarea::-webkit-input-placeholder {
   color: #1ABC9C;
 }
 
-/*TODO: Hover is messed up on both elements*/
+.play-trigger .icon-play {
+  display: none;
+}
+
+.icon-pause {
+  display: none;
+}
+
+.play-trigger .icon-pause {
+  display: block;
+  margin-left: 11px;
+  font-size: 1.8em;
+  margin-top: 14px;
+  color: #1ABC9C;
+}
+
 .searchbar .play:hover,
-.searchbar .icon-play:hover {
+.searchbar .play:hover .icon-play,
+.searchbar .play:hover .icon-pause {
   cursor: pointer;
   background-color: #1ABC9C;
   color: white;
