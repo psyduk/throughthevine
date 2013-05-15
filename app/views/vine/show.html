@@ -3,29 +3,29 @@
 <div id="video-holder" class="row-fluid video-wrapper">
   <div class="span4 video">
     <video class="vid" id="video_0" width="100%" height="100%" preload="auto" poster="{{ vids[0].poster }}">
-      <source src="{{ vids[0].video }}" type="video/mp4">
+      <source id="video_0_src" src="{{ vids[0].video }}" type="video/mp4">
     </video>
     <div class="av">
-      <a href={{ vids[0].url }}><img class="avatar" src="{{ vids[0].avatar }}"></a>
-      <span class="text"><strong><a href="{{ vids[0].url }}">{{ vids[0].username }}</strong> - {{ vids[0].tagline }}</a></span>
+      <a id="video_0_url" class="link" href="{{ vids[0].url }}"><img id="video_0_avatar" class="avatar" src="{{ vids[0].avatar }}"></a>
+      <span class="text"><strong><a id="video_0_url" class="link" href="{{ vids[0].url }}"><span id="video_0_username">{{ vids[0].username }}</span></strong> - <span id="video_0_tagline">{{ vids[0].tagline }}</span></a></span>
     </div>
   </div>
   <div class="span4 video">
     <video class="vid" id="video_1" width="100%" height="100%" preload="auto" poster="{{ vids[1].poster }}">
-      <source src="{{ vids[1].video }}" type="video/mp4">
+      <source id="video_1_src" src="{{ vids[1].video }}" type="video/mp4">
     </video>
     <div class="av">
-      <a href="{{ vids[1].url }}"><img class="avatar" src="{{ vids[1].avatar }}"></a>
-      <span class="text"><strong><a href="{{ vids[1].url }}">{{ vids[1].username }}</strong> - {{ vids[1].tagline }}</a></span>
+      <a id="video_1_url" class="link" href="{{ vids[1].url }}"><img id="video_1_avatar" class="avatar" src="{{ vids[1].avatar }}"></a>
+      <span class="text"><strong><a id="video_1_url" class="link" href="{{ vids[1].url }}"><span id="video_1_username">{{ vids[1].username }}</span></strong> - <span id="video_1_tagline">{{ vids[1].tagline }}</span></a></span>
     </div>
   </div>
   <div class="span4 video">
     <video class="vid" id="video_2" width="100%" height="100%" preload="auto" poster={{ vids[2].poster }}>
-      <source src="{{ vids[2].video }}" type="video/mp4">
+      <source id="video_2_src" src="{{ vids[2].video }}" type="video/mp4">
     </video>
     <div class="av">
-      <a href="{{ vids[2].url }}"><img class="avatar" src="{{ vids[2].avatar }}"></a>
-      <span class="text"><strong><a href="{{ vids[2].url }}">{{ vids[2].username }}</strong> - {{ vids[2].tagline }}</a></span>
+      <a id="video_2_url" class="link" href="{{ vids[2].url }}"><img id="video_2_avatar" class="avatar" src="{{ vids[2].avatar }}"></a>
+      <span class="text"><strong><a id="video_2_url" class="link" href="{{ vids[2].url }}"><span id="video_2_username">{{ vids[2].username }}</span></strong> - <span id="video_2_tagline">{{ vids[2].tagline }}</span></a></span>
     </div>
   </div>
 </div>
@@ -74,9 +74,27 @@ var playVideo = function (el) {
   el.removeAttribute('controls');
 }
 
+var replaceVid = function (video, data) {
+  $(video).attr('poster', data.poster);
+  $(video + '_src').attr('src', data.video);
+  $(video + '_src').attr('href', data.video);
+  $(video).load();
+  $(video + '_url').attr('src', data.url);
+  $(video + '_url').attr('href', data.url);
+  $(video + '_avatar').attr('src', data.avatar);
+  $(video + '_avatar').attr('href', data.avatar);
+  $(video + '_username').text(data.username);
+  $(video + '_tagline').text(data.tagline);
+
+
+
+};
 
 var replaceVids = function (data) {
-  $('#video_0').setAttribute('');
+  replaceVid('#video_0', data.vids[0]);
+  replaceVid('#video_1', data.vids[1]);
+  replaceVid('#video_2', data.vids[2]);
+
 };
 
 
@@ -90,13 +108,14 @@ $('.refresh').on('click', function (e) {
     url: '/vine/page?keywords=puppies&page=' + page,
     contentType: 'application/json',
     success: function (data) {
-      replaceVid(data);
+      replaceVids(data);
       page++;
     },
     error: function (error){
       console.log('error: unable to retrieve data');
     }
   });
+  $('.playVideos').removeClass("play-trigger");
 });
 
 $('.vid').on('click', function (e) {
