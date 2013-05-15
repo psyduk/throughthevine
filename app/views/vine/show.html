@@ -87,6 +87,7 @@ var replaceVids = function (data) {
   replaceVid('#video_2', data.vids[2]);
 };
 
+var currentVid = 0;
 
 $('.semi-circle').on('click', function (e) {
   e.preventDefault();
@@ -94,6 +95,7 @@ $('.semi-circle').on('click', function (e) {
 });
 
 $('.refresh').on('click', function (e) {
+  currentVid = 0;
   $.ajax({
     url: '/vine/page?keywords=' + encodeURI("{{query}}") + '&page=' + page,
     contentType: 'application/json',
@@ -127,7 +129,6 @@ var playVideo = function (el) {
   // el.removeAttribute('controls');
 };
 
-var currentVid = 0;
 
 $('.playVideos').on('click', function (e) {
   $('.playVideos').toggleClass("play-trigger");
