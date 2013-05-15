@@ -5,8 +5,8 @@ var request  = require('request'),
     $        = require('cheerio'),
     transliterator = require('transliterator');
 
-var vidRequest = function (search, query, location, cb) {
-  request('http://search.twitter.com/search.json?' + search, function (e, r, body) {
+var vidRequest = function (search, query, location, page, cb) {
+  request('http://search.twitter.com/search.json?rpp=6&' + search, function (e, r, body) {
     if (e) { throw e; }
     var tweets = JSON.parse(body).results;
 
@@ -68,11 +68,19 @@ exports.get = function (req, res) {
       location = req.connection.remoteAddress,
       search = 'vine.co ' + query;
       search = qs.stringify({ q: search });
-      vidRequest(search, query, location, function (obj) {
-        res.render('vine/show', obj);
-      });
+
+    vidRequest(search, query, location, 0, function (obj) {
+      res.render('vine/show', obj);
+    });
 };
 
 exports.page = function (req, res) {
+  var query  = req.query.keywords,
+      location = req.connection.remoteAddress,
+      search = 'vine.co ' + query;
+      search = qs.stringify({ q: search });
 
+    vidRequest(search, query, location, 0, function (obj) {
+      res.json(obj);
+    });
 };

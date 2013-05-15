@@ -5,9 +5,9 @@ module.exports = function (app) {
   // Set Root
   app.get('/', static.home);
 
-
   // Include Vine Controller
   var vine = require('../app/controllers/vine');
   app.get('/share/:id', vine.share);
   app.get('/vine', vine.get);
+  app.get('/vine/page', vine.page);
 }

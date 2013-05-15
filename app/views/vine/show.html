@@ -97,8 +97,19 @@ $('.semi-circle').on('click', function (e) {
 });
 
 $('.refresh').on('click', function (e) {
-  $('#video-holder').html(replaceVids());
-  $('.refresh').remove();
+  $.ajax({
+    url: '/vine/page?keywords=puppies',
+    contentType: 'application/json',
+    success: function(data) {
+      console.log('Successful GET Request: ', data);
+    },
+    error: function(error){
+      console.log('error: unable to retrieve data');
+    }
+  });
+
+  // $('#video-holder').html(replaceVids());
+  // $('.refresh').remove();
 });
 
 $('.vid').on('click', function (e) {
