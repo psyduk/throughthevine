@@ -12,13 +12,12 @@ var vidRequest = function (search, query, location, page, cb) {
     var tweets = JSON.parse(body).results;
 
     if (Object.keys(tweets).length < 6) {
-      res.render('static/home', { error: 'Not Enough Results' } );
+      cb({ error: 'Not Enough Results' });
     }
 
     var vineVids = [];
     var vidUrls = {};
     tweets.forEach(function (val) {
-      //find the video url
       var videoURL = val.text.match(/https?:\/\/t\.co\/\w+/);
       if (videoURL) {
         var vid = {};
@@ -72,7 +71,11 @@ exports.get = function (req, res) {
       page     = 1;
 
     vidRequest(search, query, location, 1, function (obj) {
-      res.render('vine/show', obj);
+      if (obj.hasOwnProperty('error')) {
+        res.render('static/home', { error: 'Not Enough Results'});
+      } else {
+        res.render('vine/show', obj);
+      }
     });
 };
 
@@ -84,6 +87,10 @@ exports.page = function (req, res) {
       page     = req.query.page;
 
     vidRequest(search, query, location, page, function (obj) {
-      res.json(obj);
+      if (obj.hasOwnProperty('error')) {
+        res.json({ error: 'Not Enough Results' });
+      } else {
+        res.json(obj);
+      }
     });
 };

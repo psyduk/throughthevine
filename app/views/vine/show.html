@@ -32,7 +32,7 @@
 
 <div class="searchbar">
   <form class="form" action="/vine" method="GET">
-    <input type="text" name="keywords" value="{{ query }}">
+    <input id="keywords" type="text" name="keywords" value="{{ query }}">
     <button type="submit" class="submit" style="display: none;"></button>
   </form>
   <div class="refresh">
@@ -106,11 +106,15 @@ $('.refresh').on('click', function (e) {
     url: '/vine/page?keywords=' + encodeURI("{{query}}") + '&page=' + page,
     contentType: 'application/json',
     success: function (data) {
-      replaceVids(data);
-      page++;
+      if (data.hasOwnProperty('error')) {
+        $('#keywords').val('not enough results');
+      } else {
+        replaceVids(data);
+        page++;
+      }
     },
     error: function (error){
-      $('.keywords').val('not enough results');
+      console.log('giant error');
     }
   });
   $('.playVideos').removeClass("play-trigger");
