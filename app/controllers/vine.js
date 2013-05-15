@@ -5,15 +5,6 @@ var request  = require('request'),
     $        = require('cheerio'),
     transliterator = require('transliterator');
 
-exports.share = function (req, res) {
-  var id = req.params.id;
-
-  Share.findById(id, function (err, share) {
-    if (err) { return next(err); }
-    res.render('vine/show', { query: share.query, vids: share.vid, id: share.id });
-  });
-};
-
 var vidRequest = function (search, query, location, cb) {
   request('http://search.twitter.com/search.json?' + search, function (e, r, body) {
     if (e) { throw e; }
@@ -63,6 +54,15 @@ var vidRequest = function (search, query, location, cb) {
   });
 };
 
+exports.share = function (req, res) {
+  var id = req.params.id;
+
+  Share.findById(id, function (err, share) {
+    if (err) { return next(err); }
+    res.render('vine/show', { query: share.query, vids: share.vid, id: share.id });
+  });
+};
+
 exports.get = function (req, res) {
   var query  = req.query.keywords,
       location = req.connection.remoteAddress,
@@ -71,5 +71,8 @@ exports.get = function (req, res) {
       vidRequest(search, query, location, function (obj) {
         res.render('vine/show', obj);
       });
+};
+
+exports.page = function (req, res) {
 
 };
