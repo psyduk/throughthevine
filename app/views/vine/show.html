@@ -67,14 +67,6 @@ var clip = new ZeroClipboard(document.getElementById("copy-button"), {
   moviePath: "/swf/ZeroClipboard.swf"
 });
 
-var playVideo = function (el) {
-  if (!el) { return; }
-  if (el.getAttribute('controls') !== 'true') {
-      el.setAttribute('controls', 'true');
-  }
-  el.paused ? el.play() : el.pause();
-  el.removeAttribute('controls');
-}
 
 var replaceVid = function (video, data) {
   $(video).attr('poster', data.poster);
@@ -123,27 +115,61 @@ $('.refresh').on('click', function (e) {
 
 $('.vid').on('click', function (e) {
   e.preventDefault();
-
-  if (this.classList.contains('playing')) {
-    this.pause();
-  } else {
-    this.play();
-  }
-  this.classList.toggle('playing');
+  playVideo(this);
 });
+
+var playVideo = function (el) {
+  if (!el) { return; }
+  if (el.getAttribute('controls') !== 'true') {
+      el.setAttribute('controls', 'true');
+  }
+  el.paused ? el.play() : el.pause();
+  // el.removeAttribute('controls');
+};
+
+var currentVid = 0;
 
 $('.playVideos').on('click', function (e) {
   $('.playVideos').toggleClass("play-trigger");
-  playVideo($('#video_0' ).get(0));
-  $('#video_0').one('ended', function (e) {
-    playVideo($('#video_1' ).get(0));
-    $('#video_1').one('ended', function (e) {
-      playVideo($('#video_2' ).get(0));
-      $('#video_2').one('ended', function (e) {
-        $('.playVideos').removeClass("play-trigger");
+  if (!$('.playVideos').hasClass("play-trigger")) {
+    //pause video
+    $('#video_0').get(0).pause();
+    $('#video_1').get(0).pause();
+    $('#video_2').get(0).pause();
+    $('#video_0').unbind();
+    $('#video_1').unbind();
+    $('#video_2').unbind();
+  } else {
+    if(currentVid === 0) {
+      playVideo($('#video_0' ).get(0));
+      $('#video_0').one('ended', function (e) {
+        currentVid++;
+        playVideo($('#video_1' ).get(0));
+        $('#video_1').one('ended', function (e) {
+          currentVid++;
+          playVideo($('#video_2' ).get(0));
+          $('#video_2').one('ended', function (e) {
+            $('.playVideos').removeClass("play-trigger");
+          });
+        });
       });
-    });
-  });
+    } else if(currentVid === 1) {
+      playVideo($('#video_1' ).get(0));
+      $('#video_1').one('ended', function (e) {
+        currentVid++;
+        playVideo($('#video_2' ).get(0));
+        $('#video_2').one('ended', function (e) {
+          $('.playVideos').removeClass("play-trigger");
+        });
+      });
+    } else {
+      playVideo($('#video_2' ).get(0));
+        $('#video_2').one('ended', function (e) {
+          $('.playVideos').removeClass("play-trigger");
+          currentVid = 0;
+        });
+    }
+  }
 });
 
 </script>
