@@ -7,3 +7,9 @@ Use our app to search for keywords on Vine. Currently, you will get three videos
 This app was made at AngelHack SF 2013 by Selby Walker, Alex Paley, and Andrew Ha. Thanks to Vine (and indirectly Twitter) for the awesome videos.
 
 App Stack: Javascript, Node.js, Express, MongoDB
+
+### Team Info ###
+
+**Alex Paley**: [www.alexpaley.com](www.alexpaley.com)
+**Selby Walker**: [www.selbywalker.com](www.selbywalker.com)
+**Andrew Ha**: [www.andrewha.com](www.andrewha.com)
