@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div class="row-fluid video-wrapper">
+<div id="video-holder" class="row-fluid video-wrapper">
   <div class="span4 video">
     <video class="vid" id="video_0" width="100%" height="100%" preload="auto" poster="{{ vids[0].poster }}">
       <source src="{{ vids[0].video }}" type="video/mp4">
