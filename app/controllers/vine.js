@@ -36,12 +36,12 @@ var vidRequest = function (search, query, location, page, cb) {
           }
 
           //make sure we haven't already displayed a video from this user
-          if (!vidUrls[vid.url] && vid.avatar && vid.video && vid.username) {
+          if (!vidUrls[vid.video] && vid.avatar && vid.video && vid.username) {
             vineVids.push(vid);
-            vidUrls[vid.url] = true;
+            vidUrls[vid.video] = true;
           }
 
-          if (vineVids.length === 12) {
+          if (vineVids.length === 3) {
             var share = new Share({query: query, vid: vineVids, location: location});
             share.save(function (err, share) {
               if (err) { return console.log(err); }
