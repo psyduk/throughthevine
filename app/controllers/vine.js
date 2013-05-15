@@ -15,8 +15,9 @@ var vidRequest = function (search, query, location, page, cb) {
       cb({ error: 'Not Enough Results' });
     }
 
-    var vineVids = [];
-    var vidUrls = {};
+    var vineVids = [],
+        vidUrls = {};
+
     tweets.forEach(function (val) {
       var videoURL = val.text.match(/https?:\/\/t\.co\/\w+/);
       if (videoURL) {
