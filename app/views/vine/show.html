@@ -32,7 +32,7 @@
 
 <div class="searchbar">
   <form class="form" action="/vine" method="GET">
-    <input type="text" name="keywords" placeholder="{{ query }}" onfocus="this.placeholder = ''">
+    <input type="text" name="keywords" value="{{ query }}">
     <button type="submit" class="submit" style="display: none;"></button>
   </form>
   <div class="refresh">
@@ -87,16 +87,12 @@ var replaceVid = function (video, data) {
   $(video + '_avatar').attr('href', data.avatar);
   $(video + '_username').text(data.username);
   $(video + '_tagline').text(data.tagline);
-
-
-
 };
 
 var replaceVids = function (data) {
   replaceVid('#video_0', data.vids[0]);
   replaceVid('#video_1', data.vids[1]);
   replaceVid('#video_2', data.vids[2]);
-
 };
 
 
@@ -107,25 +103,24 @@ $('.semi-circle').on('click', function (e) {
 
 $('.refresh').on('click', function (e) {
   $.ajax({
-    url: '/vine/page?keywords=' + data.query + '&page=' + page,
+    url: '/vine/page?keywords=' + encodeURI("{{query}}") + '&page=' + page,
     contentType: 'application/json',
     success: function (data) {
       replaceVids(data);
       page++;
     },
     error: function (error){
-      console.log('error: unable to retrieve data');
+      $('.keywords').val('not enough results');
     }
   });
   $('.playVideos').removeClass("play-trigger");
-  $('#copy-button').attr('data-clipboard-text', 'http://throughthevine.me/share/' + data.id)
+  $('#copy-button').attr('data-clipboard-text', 'http://throughthevine.me/share/' + "{{id}}");
 });
 
 $('.vid').on('click', function (e) {
-  console.log(this.classList)
   e.preventDefault();
 
-  if(this.classList.contains('playing')){
+  if (this.classList.contains('playing')) {
     this.pause();
   } else {
     this.play();
