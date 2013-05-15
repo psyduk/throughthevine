@@ -119,8 +119,8 @@ textarea::-webkit-input-placeholder {
   bottom: 0;
   height: 44px;
   padding: 10px;
-  background-color: white;
-  opacity: .75;
+  background-color: rgba(255, 255, 255, 0.75);
+  /*opacity: .75;*/
   border: 1px solid rgb(71,163,119);
   text-align: center;
 }
@@ -274,8 +274,7 @@ textarea::-webkit-input-placeholder {
   top: -47px;
   left: 50%;
   margin-left: -23px;
-  opacity: .75;
-  background-color: #FFF;
+  background-color: rgba(255, 255, 255, 0.5);
   border: 1px solid rgb(71,163,119);
 }
 
@@ -337,13 +336,15 @@ textarea::-webkit-input-placeholder {
 
 .share-bubble .btn.btn-primary{
   margin-top: 17px;
+  margin-right: -29px;
 }
 
 .twitter-share-container {
   display: inline-block;
+  width: 100px;
   float: left;
-  margin-top: 19px;
-  margin-left: 10px;
+  margin-top: 12px;
+  margin-left: 2px;
 }
 
 .twitter-share-button {
