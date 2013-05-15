@@ -206,15 +206,31 @@ textarea::-webkit-input-placeholder {
   height: 24px;
 }
 
-.searchbar .play {
+.icon-refresh {
+  font-size: 1.8em;
+  margin-top: 14px;
+  margin-left: -8px;
+  color: #1ABC9C;
+}
+
+.searchbar .play,
+.searchbar .refresh {
   position: absolute;
-  left: 10px;
   top: 10px;
-  right: auto;
   border-radius: 50%;
   width: 44px;
   height: 44px;
   border: 1px solid #1ABC9C;
+ }
+
+ .searchbar .play {
+  left: 10px;
+  right: auto;
+ }
+
+ .searchbar .refresh {
+  left: auto;
+  right: 64px;
  }
 
 .icon-play {
@@ -241,7 +257,9 @@ textarea::-webkit-input-placeholder {
 
 .searchbar .play:hover,
 .searchbar .play:hover .icon-play,
-.searchbar .play:hover .icon-pause {
+.searchbar .play:hover .icon-pause,
+.searchbar .refresh:hover,
+.searchbar .refresh:hover .icon-refresh {
   cursor: pointer;
   background-color: #1ABC9C;
   color: white;
