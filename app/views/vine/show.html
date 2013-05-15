@@ -107,7 +107,7 @@ $('.semi-circle').on('click', function (e) {
 
 $('.refresh').on('click', function (e) {
   $.ajax({
-    url: '/vine/page?keywords=puppies&page=' + page,
+    url: '/vine/page?keywords=' + data.query + '&page=' + page,
     contentType: 'application/json',
     success: function (data) {
       replaceVids(data);
@@ -118,6 +118,7 @@ $('.refresh').on('click', function (e) {
     }
   });
   $('.playVideos').removeClass("play-trigger");
+  $('#copy-button').attr('data-clipboard-text', 'http://throughthevine.me/share/' + data.id)
 });
 
 $('.vid').on('click', function (e) {

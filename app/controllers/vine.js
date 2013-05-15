@@ -35,9 +35,9 @@ var vidRequest = function (search, query, location, page, cb) {
           if($user('p').html()) {
             vid.tagline  = transliterator($user('p').html());
           }
-
+          // if(!vineVids[vid.video])
           //make sure we haven't already displayed a video from this user
-          if (!vidUrls[vid.video] && vid.avatar && vid.video && vid.username) {
+          if (vid.avatar && vid.video && vid.username) {
             vineVids.push(vid);
             vidUrls[vid.video] = true;
           }
