@@ -14,17 +14,12 @@ exports.share = function (req, res) {
   });
 };
 
-exports.get = function(req, res) {
-  var query  = req.query.keywords,
-      location = req.connection.remoteAddress,
-      search = 'vine.co ' + query;
-      search = qs.stringify({ q: search });
-
+var vidRequest = function (search, query, location, cb) {
   request('http://search.twitter.com/search.json?' + search, function (e, r, body) {
     if (e) { throw e; }
     var tweets = JSON.parse(body).results;
 
-    if (Object.keys(tweets).length < 5) {
+    if (Object.keys(tweets).length < 6) {
       res.render('static/home', { error: 'Not Enough Results' } );
     }
 
@@ -44,25 +39,37 @@ exports.get = function(req, res) {
           vid.poster   = $body('video').attr('poster');
           vid.avatar   = $user('.avatar').attr('src');
           vid.username = $user('h2').html();
+
           if($user('p').html()) {
-            vid.tagline  = transliterator($user('p').html());
+            vid.tagline  = transliterator($user('p').html()); 
           }
+
           //make sure we haven't already displayed a video from this user
           if (!vidUrls[vid.url] && vid.avatar && vid.video && vid.username) {
             vineVids.push(vid);
             vidUrls[vid.url] = true;
           }
-          if (vineVids.length === 3) {
+
+          if (vineVids.length === 6) {
             var share = new Share({query: query, vid: vineVids, location: location});
             share.save(function (err, share) {
               if (err) { return console.log(err); }
-              res.render('vine/show', { query: query, vids: vineVids, id: share.id });
+              cb({ query: query, vids: vineVids, id: share.id });
             });
           }
-
         });
       }
-
     });
   });
+};
+
+exports.get = function (req, res) {
+  var query  = req.query.keywords,
+      location = req.connection.remoteAddress,
+      search = 'vine.co ' + query;
+      search = qs.stringify({ q: search });
+      vidRequest(search, query, location, function (obj) {
+        res.render('vine/show', obj);
+      });
+
 };
