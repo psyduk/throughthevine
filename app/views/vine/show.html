@@ -74,9 +74,31 @@ var playVideo = function (el) {
   el.removeAttribute('controls');
 }
 
+
+var replaceVids = function() {
+
+  return '<div class="span4 video"><video class="vid" id="video_0" width="100%" height="100%" preload="auto" poster="{{ vids[3].poster }}">'
+      + '<source src="{{ vids[3].video }}" type="video/mp4"></video><div class="av">'
+      + '<a href={{ vids[3].url }}><img class="avatar" src="{{ vids[3].avatar }}"></a>'
+      + '<span class="text"><strong><a href="{{ vids[3].url }}">{{ vids[3].username }}</strong> - {{ vids[3].tagline }}</a></span>'
+      + '</div></div><div class="span4 video"><video class="vid" id="video_1" width="100%" height="100%" preload="auto" poster="{{ vids[4].poster }}">'
+      + '<source src="{{ vids[4].video }}" type="video/mp4"></video><div class="av"><a href="{{ vids[4].url }}"><img class="avatar" src="{{ vids[4].avatar }}"></a>'
+      + '<span class="text"><strong><a href="{{ vids[4].url }}">{{ vids[4].username }}</strong> - {{ vids[4].tagline }}</a></span></div>'
+      + '</div><div class="span4 video"><video class="vid" id="video_2" width="100%" height="100%" preload="auto" poster={{ vids[5].poster }}>'
+      + '<source src="{{ vids[5].video }}" type="video/mp4"></video><div class="av"><a href="{{ vids[5].url }}"><img class="avatar" src="{{ vids[5].avatar }}"></a>'
+      + '<span class="text"><strong><a href="{{ vids[5].url }}">{{ vids[5].username }}</strong> - {{ vids[5].tagline }}</a></span></div></div>';
+
+};
+
+
 $('.semi-circle').on('click', function (e) {
   e.preventDefault();
   $('.share-bubble').toggle();
+});
+
+$('.refresh').on('click', function (e) {
+  $('#video-holder').html(replaceVids());
+  $('.refresh').remove();
 });
 
 $('.vid').on('click', function (e) {

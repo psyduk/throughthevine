@@ -41,7 +41,7 @@ var vidRequest = function (search, query, location, cb) {
             vidUrls[vid.url] = true;
           }
 
-          if (vineVids.length === 6) {
+          if (vineVids.length === 12) {
             var share = new Share({query: query, vid: vineVids, location: location});
             share.save(function (err, share) {
               if (err) { return console.log(err); }
