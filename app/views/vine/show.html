@@ -59,7 +59,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="/js/ZeroClipboard.min.js"></script>
 <script>
-var page = 10;
+var page = 2;
 
 var clip = new ZeroClipboard(document.getElementById("copy-button"), {
   moviePath: "/swf/ZeroClipboard.swf"
@@ -75,19 +75,8 @@ var playVideo = function (el) {
 }
 
 
-var replaceVids = function() {
-
-  return '<div class="span4 video"><video class="vid" id="video_0" width="100%" height="100%" preload="auto" poster="{{ vids[3].poster }}">'
-      + '<source src="{{ vids[3].video }}" type="video/mp4"></video><div class="av">'
-      + '<a href={{ vids[3].url }}><img class="avatar" src="{{ vids[3].avatar }}"></a>'
-      + '<span class="text"><strong><a href="{{ vids[3].url }}">{{ vids[3].username }}</strong> - {{ vids[3].tagline }}</a></span>'
-      + '</div></div><div class="span4 video"><video class="vid" id="video_1" width="100%" height="100%" preload="auto" poster="{{ vids[4].poster }}">'
-      + '<source src="{{ vids[4].video }}" type="video/mp4"></video><div class="av"><a href="{{ vids[4].url }}"><img class="avatar" src="{{ vids[4].avatar }}"></a>'
-      + '<span class="text"><strong><a href="{{ vids[4].url }}">{{ vids[4].username }}</strong> - {{ vids[4].tagline }}</a></span></div>'
-      + '</div><div class="span4 video"><video class="vid" id="video_2" width="100%" height="100%" preload="auto" poster={{ vids[5].poster }}>'
-      + '<source src="{{ vids[5].video }}" type="video/mp4"></video><div class="av"><a href="{{ vids[5].url }}"><img class="avatar" src="{{ vids[5].avatar }}"></a>'
-      + '<span class="text"><strong><a href="{{ vids[5].url }}">{{ vids[5].username }}</strong> - {{ vids[5].tagline }}</a></span></div></div>';
-
+var replaceVids = function (data) {
+  $('#video_0').setAttribute('');
 };
 
 
@@ -98,18 +87,16 @@ $('.semi-circle').on('click', function (e) {
 
 $('.refresh').on('click', function (e) {
   $.ajax({
-    url: '/vine/page?keywords=puppies',
+    url: '/vine/page?keywords=puppies&page=' + page,
     contentType: 'application/json',
-    success: function(data) {
-      console.log('Successful GET Request: ', data);
+    success: function (data) {
+      replaceVid(data);
+      page++;
     },
-    error: function(error){
+    error: function (error){
       console.log('error: unable to retrieve data');
     }
   });
-
-  // $('#video-holder').html(replaceVids());
-  // $('.refresh').remove();
 });
 
 $('.vid').on('click', function (e) {

@@ -6,7 +6,8 @@ var request  = require('request'),
     transliterator = require('transliterator');
 
 var vidRequest = function (search, query, location, page, cb) {
-  request('http://search.twitter.com/search.json?rpp=6&' + search, function (e, r, body) {
+  request('http://search.twitter.com/search.json?rpp=6&page='
+    + page + '&' + search, function (e, r, body) {
     if (e) { throw e; }
     var tweets = JSON.parse(body).results;
 
@@ -64,23 +65,25 @@ exports.share = function (req, res) {
 };
 
 exports.get = function (req, res) {
-  var query  = req.query.keywords,
+  var query    = req.query.keywords,
       location = req.connection.remoteAddress,
-      search = 'vine.co ' + query;
-      search = qs.stringify({ q: search });
+      search   = 'vine.co ' + query;
+      search   = qs.stringify({ q: search }),
+      page     = 1;
 
-    vidRequest(search, query, location, 0, function (obj) {
+    vidRequest(search, query, location, 1, function (obj) {
       res.render('vine/show', obj);
     });
 };
 
 exports.page = function (req, res) {
-  var query  = req.query.keywords,
+  var query    = req.query.keywords,
       location = req.connection.remoteAddress,
-      search = 'vine.co ' + query;
-      search = qs.stringify({ q: search });
+      search   = 'vine.co ' + query;
+      search   = qs.stringify({ q: search }),
+      page     = req.query.page;
 
-    vidRequest(search, query, location, 0, function (obj) {
+    vidRequest(search, query, location, page, function (obj) {
       res.json(obj);
     });
 };
