@@ -10,6 +10,8 @@ App Stack: Javascript, Node.js, Express, MongoDB
 
 ### Team Info ###
 
-**Alex Paley**: [www.alexpaley.com](www.alexpaley.com)
-**Selby Walker**: [www.selbywalker.com](www.selbywalker.com)
-**Andrew Ha**: [www.andrewha.com](www.andrewha.com)
+**Alex Paley**: [http://www.alexpaley.com](http://www.alexpaley.com)
+
+**Selby Walker**: [http://www.selbywalker.com](http://www.selbywalker.com)
+
+**Andrew Ha**: [http://www.andrewha.com](http://www.andrewha.com)
