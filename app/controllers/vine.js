@@ -66,7 +66,7 @@ exports.share = function (req, res) {
 
 exports.get = function (req, res) {
   var query    = req.query.keywords,
-      location = req.connection.remoteAddress,
+      location = req.headers['x-forwarded-for'] || req.connection.remoteAddress,
       search   = 'vine.co ' + query;
       search   = qs.stringify({ q: search }),
       page     = 1;
@@ -82,7 +82,7 @@ exports.get = function (req, res) {
 
 exports.page = function (req, res) {
   var query    = req.query.keywords,
-      location = req.connection.remoteAddress,
+      location = req.headers['x-forwarded-for'] || req.connection.remoteAddress,
       search   = 'vine.co ' + query;
       search   = qs.stringify({ q: search }),
       page     = req.query.page;
