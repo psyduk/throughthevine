@@ -61,12 +61,12 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="/js/ZeroClipboard.min.js"></script>
 <script>
-var page = 2;
+var page       = 2,
+    currentVid = 0;
 
-var clip = new ZeroClipboard(document.getElementById("copy-button"), {
-  moviePath: "/swf/ZeroClipboard.swf"
+var clip = new ZeroClipboard(document.getElementById('copy-button'), {
+  moviePath: '/swf/ZeroClipboard.swf'
 });
-
 
 var replaceVid = function (video, data) {
   $(video).attr('poster', data.poster);
@@ -87,8 +87,6 @@ var replaceVids = function (data) {
   replaceVid('#video_2', data.vids[2]);
 };
 
-var currentVid = 0;
-
 $('.semi-circle').on('click', function (e) {
   e.preventDefault();
   $('.share-bubble').toggle();
@@ -108,7 +106,7 @@ $('.refresh').on('click', function (e) {
       }
     },
     error: function (error){
-      console.log('giant error');
+      console.log('ERORR: CANNOT CONNECT TO SERVER');
     }
   });
   $('.playVideos').removeClass("play-trigger");
@@ -129,7 +127,6 @@ var playVideo = function (el) {
   // el.removeAttribute('controls');
 };
 
-
 $('.playVideos').on('click', function (e) {
   $('.playVideos').toggleClass("play-trigger");
   if (!$('.playVideos').hasClass("play-trigger")) {
@@ -141,7 +138,7 @@ $('.playVideos').on('click', function (e) {
     $('#video_1').unbind();
     $('#video_2').unbind();
   } else {
-    if(currentVid === 0) {
+    if (currentVid === 0) {
       playVideo($('#video_0' ).get(0));
       $('#video_0').one('ended', function (e) {
         currentVid++;
@@ -154,7 +151,7 @@ $('.playVideos').on('click', function (e) {
           });
         });
       });
-    } else if(currentVid === 1) {
+    } else if (currentVid === 1) {
       playVideo($('#video_1' ).get(0));
       $('#video_1').one('ended', function (e) {
         currentVid++;
@@ -165,13 +162,12 @@ $('.playVideos').on('click', function (e) {
       });
     } else {
       playVideo($('#video_2' ).get(0));
-        $('#video_2').one('ended', function (e) {
-          $('.playVideos').removeClass("play-trigger");
-          currentVid = 0;
-        });
+      $('#video_2').one('ended', function (e) {
+        $('.playVideos').removeClass("play-trigger");
+        currentVid = 0;
+      });
     }
   }
 });
-
 </script>
 {% endblock %}

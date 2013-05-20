@@ -1,13 +1,15 @@
-var request  = require('request'),
+var $        = require('cheerio'),
+    request  = require('request'),
     mongoose = require('mongoose'),
-    Share    = mongoose.model('Share'),
     qs       = require('querystring'),
-    $        = require('cheerio'),
-    transliterator = require('transliterator');
+    trans    = require('transliterator'),
+    Share    = mongoose.model('Share');
 
 var vidRequest = function (search, query, location, page, cb) {
-  request('http://search.twitter.com/search.json?rpp=6&page='
-    + page + '&' + search, function (e, r, body) {
+  var twitterUrl = 'http://search.twitter.com/search.json',
+      rpp        = 6;
+
+  request(twitterUrl + '?rpp=' + rpp + '&page=' + page + '&' + search, function (e, r, body) {
     if (e) { throw e; }
     var tweets = JSON.parse(body).results;
 
@@ -20,9 +22,11 @@ var vidRequest = function (search, query, location, page, cb) {
 
     tweets.forEach(function (val) {
       var videoURL = val.text.match(/https?:\/\/t\.co\/\w+/);
+
       if (videoURL) {
         var vid = {};
         vid.url = videoURL[0].replace('”', '').replace('"', '');
+
         request(vid.url, function (e, r, body) {
           var $body = $.load(body),
               $user = $.load($body('.info').html());
@@ -33,10 +37,9 @@ var vidRequest = function (search, query, location, page, cb) {
           vid.username = $user('h2').html();
 
           if($user('p').html()) {
-            vid.tagline  = transliterator($user('p').html());
+            vid.tagline  = trans($user('p').html());
           }
-          // if(!vineVids[vid.video])
-          //make sure we haven't already displayed a video from this user
+
           if (vid.avatar && vid.video && vid.username) {
             vineVids.push(vid);
             vidUrls[vid.video] = true;
